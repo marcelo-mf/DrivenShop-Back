@@ -1,6 +1,5 @@
 import express from "express";
 import { signIn, signUp } from "../controllers/authController.js";
-
 import validateNewUserSchema from "../middlewares/validateNewUserSchema.js";
 import validateUserSchema from "../middlewares/validateUserSchema.js";
 
