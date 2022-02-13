@@ -21,6 +21,8 @@ export async function signIn(req, res) {
         let userInfo = { ...user, token }
   
         delete userInfo.password
+        delete userInfo.cpf
+
   
         res.send(userInfo);
       } else {

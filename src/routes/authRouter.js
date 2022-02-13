@@ -2,13 +2,14 @@ import express from "express";
 import { signIn, signUp } from "../controllers/authController.js";
 import validateNewUserSchema from "../middlewares/validateNewUserSchema.js";
 import validateUserSchema from "../middlewares/validateUserSchema.js";
+import db from "../db.js";
 
 const authRouter = express.Router();
 
-let users = [{name: "a", email: "a@a.com", password: "a"}]
-
-authRouter.get("/hello", (req, res) => {
-    res.send(users);
+authRouter.get("/hello", async (req, res) => {
+    const user = await db.collection('users').find({}).toArray()
+    const session = await db.collection('sessions').find({}).toArray()
+    res.send({ users: user, session: session})
 });
 
 authRouter.post("/driven-shop/sign-up", validateNewUserSchema, signUp)
