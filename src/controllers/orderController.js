@@ -8,12 +8,12 @@ export default async function order(req, res) {
     try {
         await db.collection('orders').insertOne({...order, userId: user._id})
 
-        if (order.courses.length === 0) {
+        if (order.order.length === 0) {
             res.sendStatus(422)
         }
 
-        for(let i = 0; i < order.courses.length; i++) {
-            await db.collection('users').updateOne({_id: user._id},{$addToSet: {"purchased": order.courses[i]}})
+        for(let i = 0; i < order.order.length; i++) {
+            await db.collection('users').updateOne({_id: user._id},{$addToSet: {"purchased": order.order[i]}})
         }
 
         res.sendStatus(201)
