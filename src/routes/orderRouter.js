@@ -5,8 +5,6 @@ import { validateToken } from "../middlewares/validateUserToken.js";
 
 const orderRouter = express.Router()
 
-orderRouter.use(validateToken)
-
-orderRouter.post('/driven-shop/order', validateOrderSchema, orderController)
+orderRouter.post('/driven-shop/order', validateOrderSchema, validateToken, orderController)
 
 export default orderRouter
