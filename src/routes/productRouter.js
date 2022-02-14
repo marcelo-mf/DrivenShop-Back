@@ -4,7 +4,7 @@ import { getAll, getProduct } from "../controllers/productController.js";
 
 const productRouter = express.Router()
 
-productRouter.use(validateToken)
+//productRouter.use(validateToken)
 
 productRouter.get('/home', getAll)
 
